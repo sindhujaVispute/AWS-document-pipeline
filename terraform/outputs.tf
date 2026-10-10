@@ -16,3 +16,7 @@ output "ssm_parameter_arn" {
   value       = data.aws_ssm_parameter.ai_api_key.arn
   sensitive   = true
 }
+output "lambda_function_name" {
+  description = "Name of the deployed Lambda function"
+  value       = aws_lambda_function.processor.function_name
+}

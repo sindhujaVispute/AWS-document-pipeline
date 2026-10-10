@@ -4,3 +4,5 @@
 .env
 __pycache__/
 *.zip
+terraform/build/
+terraform/lambda.zip
