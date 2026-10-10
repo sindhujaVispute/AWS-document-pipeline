@@ -11,3 +11,8 @@ output "lambda_role_arn" {
   description = "ARN of the Lambda execution role"
   value       = aws_iam_role.lambda_role.arn
 }
+output "ssm_parameter_arn" {
+  description = "ARN of the AI API key parameter"
+  value       = data.aws_ssm_parameter.ai_api_key.arn
+  sensitive   = true
+}
