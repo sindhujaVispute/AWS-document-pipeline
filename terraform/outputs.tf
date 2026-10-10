@@ -20,3 +20,12 @@ output "lambda_function_name" {
   description = "Name of the deployed Lambda function"
   value       = aws_lambda_function.processor.function_name
 }
+output "sns_topic_arn" {
+  description = "SNS topic for alerts"
+  value       = aws_sns_topic.alerts.arn
+}
+
+output "dashboard_url" {
+  description = "CloudWatch Dashboard URL"
+  value       = "https://${var.aws_region}.console.aws.amazon.com/cloudwatch/home?region=${var.aws_region}#dashboards:name=${aws_cloudwatch_dashboard.pipeline_dashboard.dashboard_name}"
+}
