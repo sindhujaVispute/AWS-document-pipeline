@@ -54,7 +54,7 @@ def summarize_with_ai(text):
     truncated_text = text[:3000]
     
     payload = {
-        "model": "llama-3.1-8b-instant",
+        "model": "openai/gpt-oss-20b",
         "messages": [
             {
                 "role": "system",

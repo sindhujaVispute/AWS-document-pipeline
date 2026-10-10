@@ -1,7 +1,7 @@
 # 1. Trust Policy: Allow Lambda to assume this role
 data "aws_iam_policy_document" "lambda_assume_role" {
   statement {
-    effect = "Allow"
+    effect  = "Allow"
     actions = ["sts:AssumeRole"]
     principals {
       type        = "Service"
@@ -25,9 +25,9 @@ resource "aws_iam_role" "lambda_role" {
 data "aws_iam_policy_document" "lambda_permissions" {
   # Permission to read the uploaded PDF from our specific S3 bucket
   statement {
-    sid     = "AllowS3Read"
-    effect  = "Allow"
-    actions = ["s3:GetObject"]
+    sid       = "AllowS3Read"
+    effect    = "Allow"
+    actions   = ["s3:GetObject"]
     resources = ["${aws_s3_bucket.uploads.arn}/*"]
   }
 
@@ -61,6 +61,20 @@ data "aws_iam_policy_document" "lambda_permissions" {
     effect    = "Allow"
     actions   = ["ssm:GetParameter"]
     resources = ["arn:aws:ssm:${var.aws_region}:*:parameter/doc-pipeline/*"]
+  }
+
+  # Permission to publish custom metrics to CloudWatch
+  # Note: PutMetricData doesn't support resource-level ARNs, so we scope by namespace
+  statement {
+    sid       = "AllowCloudWatchPutMetricData"
+    effect    = "Allow"
+    actions   = ["cloudwatch:PutMetricData"]
+    resources = ["*"]
+    condition {
+      test     = "StringEquals"
+      variable = "cloudwatch:namespace"
+      values   = ["DocPipeline"]
+    }
   }
 }
 
