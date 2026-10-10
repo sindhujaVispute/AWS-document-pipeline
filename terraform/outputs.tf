@@ -29,3 +29,9 @@ output "dashboard_url" {
   description = "CloudWatch Dashboard URL"
   value       = "https://${var.aws_region}.console.aws.amazon.com/cloudwatch/home?region=${var.aws_region}#dashboards:name=${aws_cloudwatch_dashboard.pipeline_dashboard.dashboard_name}"
 }
+output "github_actions_role_arn" {
+  description = "ARN of the IAM role GitHub Actions will assume"
+  value       = aws_iam_role.github_actions.arn
+}
+
+#arn:aws:iam::293280994842:role/doc-pipeline-github-actions-role

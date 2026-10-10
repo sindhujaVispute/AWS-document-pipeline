@@ -6,6 +6,11 @@ terraform {
       version = "~> 5.0"
     }
   }
+  backend "s3" {
+    bucket = "doc-pipeline-tfstate-sindhuja-2026" # <-- your bucket name
+    key    = "doc-pipeline/terraform.tfstate"
+    region = "us-east-1"
+  }
 }
 
 # 2. Configure the AWS Provider using our variable

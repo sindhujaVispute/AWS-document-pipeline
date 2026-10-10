@@ -33,8 +33,8 @@ data "aws_iam_policy_document" "lambda_permissions" {
 
   # Permission to write metadata to our specific DynamoDB table
   statement {
-    sid     = "AllowDynamoDBWrite"
-    effect  = "Allow"
+    sid    = "AllowDynamoDBWrite"
+    effect = "Allow"
     actions = [
       "dynamodb:PutItem",
       "dynamodb:GetItem",
@@ -45,8 +45,8 @@ data "aws_iam_policy_document" "lambda_permissions" {
 
   # Permission to write logs to CloudWatch (required for Lambda)
   statement {
-    sid     = "AllowCloudWatchLogs"
-    effect  = "Allow"
+    sid    = "AllowCloudWatchLogs"
+    effect = "Allow"
     actions = [
       "logs:CreateLogGroup",
       "logs:CreateLogStream",
